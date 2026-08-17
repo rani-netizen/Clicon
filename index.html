@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clicon - Home</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Krub:wght@500&family=League+Spartan:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+</head>
+
+<body>
+
+<!-- =====================================================
+     BLACK FRIDAY BAR
+===================================================== -->
+
+<div class="top-offer">
+    <div class="page-width offer-inner">
+
+        <div class="black-friday">
+            <span>Black</span>
+            <b>Friday</b>
+        </div>
+
+        <div class="offer-discount">
+            Up to
+            <strong>59%</strong>
+            <p>OFF</p>
+        </div>
+
+        <button class="shop-now">
+            SHOP NOW
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button class="offer-close">×</button>
+
+    </div>
+</div>
+
+
+<!-- =====================================================
+     BLUE HEADER
+===================================================== -->
+
+<header>
+
+    <!-- Small top line -->
+    <div class="blue-top">
+
+        <div class="page-width blue-top-inner">
+
+            <span>
+                Welcome to Clicon online eCommerce store.
+            </span>
+
+            <div class="follow">
+
+    <span>Follow us:</span>
+
+    <a href="#" class="social-btn" aria-label="Twitter">
+        <i class="fa-brands fa-twitter"></i>
+    </a>
+
+    <a href="#" class="social-btn" aria-label="Facebook">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+
+    <a href="#" class="social-btn" aria-label="Pinterest">
+        <i class="fa-brands fa-pinterest"></i>
+    </a>
+
+    <a href="#" class="social-btn" aria-label="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+
+    <a href="#" class="social-btn" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+
+    <!-- Language dropdown -->
+    <div class="dropdown">
+
+        <button class="dropdown-btn" type="button">
+            Eng
+            <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div class="dropdown-menu">
+
+            <button type="button">English</button>
+            <button type="button">Spanish</button>
+            <button type="button">French</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Currency dropdown -->
+    <div class="dropdown">
+
+        <button class="dropdown-btn" type="button">
+            USD
+            <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div class="dropdown-menu">
+
+            <button type="button">USD</button>
+            <button type="button">EUR</button>
+            <button type="button">GBP</button>
+            <button type="button">INR</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Main blue header -->
+    <div class="blue-main">
+
+        <div class="page-width blue-main-inner">
+
+            <a href="index.html" class="brand">
+                    <span><img src="images/Icon.svg" height="20" width="20"></span>
+                
+
+                <strong>CLICON</strong>
+            </a>
+
+
+            <div class="search">
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Search for anything..."
+                >
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </div>
+
+
+            <div class="header-icons">
+
+                <a href="cart.html" class="header-cart">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <span id="cartCount">0</span>
+
+                </a>
+
+                <a href="#"><i class="fa-regular fa-heart"></i></a>
+
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Navigation -->
+<div class="navigation">
+    <div class="page-width navigation-inner">
+
+        <!-- CATEGORY DROPDOWN -->
+        <div class="dropdown category-dropdown">
+            <button class="all-category dropdown-btn" id="categoryDropdownBtn" type="button">
+                All Category
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            
+            <div class="dropdown-menu category-menu" id="categoryDropdownMenu">
+                <a href="#">Computer & Laptop</a>
+                <a href="#">SmartPhone</a>
+                <a href="#">Headphones</a>
+                <a href="#">Accessories</a>
+                <a href="#">Camera & Photo</a>
+                <a href="#">TV & Homes</a>
+            </div>
+        </div>
+
+        <a href="#">
+            <img src="images/MapPinLine.svg" height="10" width="10">
+            Track Order
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            Compare
+        </a>
+
+        <a href="#">
+            <img src="images/Headphones.svg" height="10" width="10">
+            Customer Support
+        </a>
+
+        <a href="#">
+            <img src="images/Info.svg" height="10" width="10">
+            Need Help
+        </a>
+
+    </div>
+</div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     BEST DEALS
+===================================================== -->
+
+<section class="best-deals page-width">
+
+    <div class="section-title">
+
+        <h2>Best Deals</h2>
+
+        <div class="deal-countdown">
+    <span>Deals ends in</span>
+    <b id="dealCountdown">16d : 21h : 57m : 23s</b>
+</div>
+
+        <a href="#">
+            Browse All Product
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+
+    <div class="deal-products" id="productsGrid">
+
+        <!-- JavaScript creates products -->
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SHOP WITH CATEGORIES
+===================================================== -->
+
+<section class="categories page-width">
+
+    <h2>Shop with Categories</h2>
+
+
+    <div class="category-wrapper">
+
+        <button
+            class="category-arrow category-left"
+            id="categoryPrev"
+        >
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+
+        <div class="category-list" id="categoryList">
+
+            <div class="category">
+                <img
+                    src="images/comp2.svg"
+                    alt=""
+                >
+                <span>Computer & Laptop</span>
+            </div>
+
+            <div class="category">
+                <img
+                    src="images/mob3.svg"
+                    alt=""
+                >
+                <span>SmartPhone</span>
+            </div>
+
+            <div class="category">
+                <img
+                    src="images/headphone2.svg"
+                    alt=""
+                >
+                <span>Headphones</span>
+            </div>
+
+            <div class="category">
+                <img
+                    src="images/keyboard.svg"
+                    alt=""
+                >
+                <span>Accessories</span>
+            </div>
+
+            <div class="category">
+                <img
+                    src="images/dslr.svg"
+                    alt=""
+                >
+                <span>Camera & Photo</span>
+            </div>
+
+            <div class="category">
+                <img
+                    src="images/tv.svg"
+                    alt=""
+                >
+                <span>TV & Homes</span>
+            </div>
+
+        </div>
+
+
+        <button
+            class="category-arrow category-right"
+            id="categoryNext"
+        >
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOUR PRODUCT COLUMNS
+===================================================== -->
+
+<section class="four-columns page-width">
+
+    <div class="product-group">
+
+        <h3>FLASH SALE TODAY</h3>
+
+        <div id="flashSale"></div>
+
+    </div>
+
+
+    <div class="product-group">
+
+        <h3>BEST SELLERS</h3>
+
+        <div id="bestSellers"></div>
+
+    </div>
+
+
+    <div class="product-group">
+
+        <h3>TOP RATED</h3>
+
+        <div id="topRated"></div>
+
+    </div>
+
+
+    <div class="product-group">
+
+        <h3>NEW ARRIVAL</h3>
+
+        <div id="newArrival"></div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="page-width footer-grid">
+
+
+        <!-- Brand -->
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <span class="footer-logo-circle"></span>
+
+                CLICON
+
+            </div>
+
+            <p class="support">
+                Customer Supports:
+            </p>
+
+            <strong class="phone">
+                (629) 555-0129
+            </strong>
+
+            <p>
+                4517 Washington Ave.<br>
+                Manchester, Kentucky 39495
+            </p>
+
+            <p>
+                info@kinbo.com
+            </p>
+
+        </div>
+
+
+        <!-- Categories -->
+        <div class="footer-column">
+
+            <h4>TOP CATEGORY</h4>
+
+            <a href="#">Computer & Laptop</a>
+            <a href="#">SmartPhone</a>
+            <a href="#">Headphone</a>
+
+            <a href="#" class="active-link">
+                Accessories
+            </a>
+
+            <a href="#">Camera & Photo</a>
+            <a href="#">TV & Homes</a>
+
+            <a href="#" class="yellow-link">
+                Browse All Product
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <!-- Quick links -->
+        <div class="footer-column">
+
+            <h4>QUICK LINKS</h4>
+
+            <a href="#">Shop Product</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="#">Wishlist</a>
+            <a href="#">Compare</a>
+            <a href="#">Track Order</a>
+            <a href="#">Customer Help</a>
+            <a href="#">About Us</a>
+
+        </div>
+
+
+        <!-- Download -->
+        <div class="footer-column download">
+
+            <h4>DOWNLOAD APP</h4>
+
+            <div class="app-store">
+
+                <i class="fa-brands fa-google-play"></i>
+
+                <span>
+                    Get it on<br>
+                    <strong>Google Play</strong>
+                </span>
+
+            </div>
+
+            <div class="app-store">
+
+                <i class="fa-brands fa-apple"></i>
+
+                <span>
+                    Get it on<br>
+                    <strong>App Store</strong>
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Tags -->
+        <div class="footer-column tags-column">
+
+            <h4>POPULAR TAG</h4>
+
+            <div class="tags">
+
+                <span>Game</span>
+                <span>iPhone</span>
+                <span>TV</span>
+                <span>Asus Laptops</span>
+                <span>Macbook</span>
+                <span>SSD</span>
+                <span>Graphics Card</span>
+                <span>Power Bank</span>
+                <span>Smart TV</span>
+                <span>Speaker</span>
+                <span>Tablet</span>
+                <span>Microwave</span>
+                <span>Samsung</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        Kinbo eCommerce Template © 2021.
+        Design by Templatecookie
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     PRODUCT MODAL
+===================================================== -->
+
+<div class="modal-overlay" id="productModal">
+
+    <div class="product-modal">
+
+        <button id="modalClose" class="modal-close">
+            ×
+        </button>
+
+        <div class="modal-image">
+            <img id="modalImage" src="" alt="">
+        </div>
+
+        <div class="modal-content">
+
+            <div class="modal-rating">
+                ★★★★★
+                <small>4.7 Star Rating</small>
+            </div>
+
+            <h2 id="modalName"></h2>
+
+            <p>
+                SKU:
+                <span id="modalSku"></span>
+            </p>
+
+            <p>
+                Brand:
+                <span id="modalBrand"></span>
+            </p>
+
+            <div class="modal-price">
+                <strong id="modalPrice"></strong>
+                <del id="modalOldPrice"></del>
+            </div>
+
+            <div class="modal-actions">
+
+                <div class="quantity">
+                    <button id="modalMinus">−</button>
+                    <span id="modalQuantity">1</span>
+                    <button id="modalPlus">+</button>
+                </div>
+
+                <button id="modalAddCart" class="modal-add">
+                    ADD TO CART
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
