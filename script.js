@@ -1,4 +1,5 @@
 const products = [
+    // --- MAIN GRID PRODUCTS (IDs 1 to 9) ---
     {
         id: 1,
         name: "Xbox Series S - 512GB SSD Console with Wireless Controller",
@@ -12,7 +13,6 @@ const products = [
         id: 2,
         name: "Bose Sport Earbuds-Wireless Earphones",
         price: 2300,
-        oldPrice: 2500,
         image: "images/drone.svg",
         brand: "Bose",
         sku: "BOSE002"
@@ -21,7 +21,6 @@ const products = [
         id: 3,
         name: "Simple Mobile 4G LTE Prepaid Smartphone",
         price: 220,
-        oldPrice: 280,
         image: "images/mob.svg",
         brand: "Simple Mobile",
         sku: "SM003"
@@ -29,8 +28,8 @@ const products = [
     {
         id: 4,
         name: "4K UHD LED Smart TV with Chromecast Built-in",
-        price: 51.50,
-        oldPrice: 866,
+        price: 150,
+        oldPrice: 865,
         image: "images/console.svg",
         brand: "Samsung",
         sku: "TV004"
@@ -39,7 +38,6 @@ const products = [
         id: 5,
         name: "Sony DSC-HX8 High Zoom Point & Shoot Camera",
         price: 1200,
-        oldPrice: 1500,
         image: "images/headphones copy.svg",
         brand: "Sony",
         sku: "SONY005"
@@ -48,7 +46,6 @@ const products = [
         id: 6,
         name: "Dell Optiplex 7000x7480 All-in-One Computer Monitor",
         price: 299,
-        oldPrice: 350,
         image: "images/mob2.svg",
         brand: "Dell",
         sku: "DELL006"
@@ -57,7 +54,7 @@ const products = [
         id: 7,
         name: "Portable Washing Machine, 11lbs capacity Model",
         price: 70,
-        oldPrice: 866.99,
+        oldPrice: 865.99,
         image: "images/drone2.svg",
         brand: "Portable",
         sku: "WASH007"
@@ -66,7 +63,6 @@ const products = [
         id: 8,
         name: "2-Barrel Carburetor Carbin 2100 Engine Horsepower",
         price: 160,
-        oldPrice: 200,
         image: "images/comp.svg",
         brand: "Carbin",
         sku: "CAR008"
@@ -75,14 +71,111 @@ const products = [
         id: 9,
         name: "JBL FLIP 4 Waterproof Portable Bluetooth Speaker",
         price: 250,
-        oldPrice: 369,
+        oldPrice: 360,
         image: "images/cam.svg",
         brand: "JBL",
         sku: "JBL009"
+    },
+
+    // --- DEDICATED MINI COLUMN PRODUCTS (IDs 10 to 16) ---
+    {
+        id: 10,
+        name: "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear...",
+        price: 1500,
+        image: "images/flashcam.svg",
+        brand: "Bose",
+        sku: "MINI01"
+    },
+    {
+        id: 11,
+        name: "Samsung Electronics Samsung Galaxy S21 5G",
+        price: 1500,
+        image: "images/Image.svg",
+        brand: "Samsung",
+        sku: "MINI02"
+    },
+    {
+        id: 12,
+        name: "TOZO T6 True Wireless Earbuds Bluetooth Headpho...",
+        price: 1500,
+        image: "images/mob.svg",
+        brand: "TOZO",
+        sku: "MINI03"
+    },
+    {
+        id: 13,
+        name: "Simple Mobile 5G LTE Galaxy 12 Mini 512GB Gaming Phone",
+        price: 1500,
+        image: "images/mob.svg",
+        brand: "Simple Mobile",
+        sku: "MINI04"
+    },
+    {
+        id: 14,
+        name: "Sony DSCHX8 High Zoom Point & Shoot Camera",
+        price: 1500,
+        image: "images/drone.svg",
+        brand: "Sony",
+        sku: "MINI05"
+    },
+    {
+        id: 15,
+        name: "JBL FLIP 4 - Waterproof Portable Bluetooth Speaker...",
+        price: 1500,
+        image: "images/headphones copy.svg",
+        brand: "JBL",
+        sku: "MINI06"
+    },
+    {
+        id: 16,
+        name: "Wyze Cam Pan v2 1080p Pan/Tilt/Zoom Wi-Fi Indoor Smart...",
+        price: 1500,
+        image: "images/console.svg",
+        brand: "Wyze",
+        sku: "MINI07"
     }
 ];
 
 let cart = JSON.parse(localStorage.getItem("cliconCart")) || [];
+let wishlist = JSON.parse(localStorage.getItem("cliconWishlist")) || [];
+
+/* =====================================================
+   WISHLIST STORAGE & MANAGEMENT
+===================================================== */
+function saveWishlist() {
+    localStorage.setItem("cliconWishlist", JSON.stringify(wishlist));
+}
+
+function toggleWishlist(id, event) {
+    if (event) event.stopPropagation();
+
+    const index = wishlist.indexOf(id);
+    if (index > -1) {
+        wishlist.splice(index, 1);
+    } else {
+        wishlist.push(id);
+    }
+
+    saveWishlist();
+    displayProducts();
+
+    if (selectedProduct && selectedProduct.id === id) {
+        updateModalWishlistState();
+    }
+}
+
+function updateModalWishlistState() {
+    const modalWishlistBtn = document.getElementById("modalWishlist");
+    if (!modalWishlistBtn || !selectedProduct) return;
+
+    const isWishlisted = wishlist.includes(selectedProduct.id);
+    modalWishlistBtn.classList.toggle("active", isWishlisted);
+    
+    const icon = modalWishlistBtn.querySelector("i");
+    if (icon) {
+        icon.className = isWishlisted ? "fa-solid fa-heart" : "fa-regular fa-heart";
+    }
+}
 
 /* =====================================================
    CART STORAGE & COUNTER
@@ -101,7 +194,7 @@ function updateCartCount() {
 }
 
 /* =====================================================
-   REQ 4: ADD TO CART FUNCTIONALITY
+   ADD TO CART FUNCTIONALITY
 ===================================================== */
 function addToCart(id, quantity = 1) {
     const product = products.find(item => item.id === id);
@@ -127,7 +220,7 @@ function addToCart(id, quantity = 1) {
 }
 
 /* =====================================================
-   REQ 5 & 6: CART RENDERING, QUANTITY CONTROL & TOTALS
+   CART RENDERING & TOTALS
 ===================================================== */
 function renderCart() {
     const cartItemsContainer = document.getElementById("cartItems");
@@ -228,7 +321,7 @@ function updateCartTotals(subtotal) {
 }
 
 /* =====================================================
-   BEST DEAL PRODUCTS GRID
+   BEST DEAL PRODUCTS GRID (EXPLICITLY ONLY FIRST 9)
 ===================================================== */
 function displayProducts() {
     const grid = document.getElementById("productsGrid");
@@ -236,7 +329,10 @@ function displayProducts() {
 
     grid.innerHTML = "";
 
-    products.forEach((product, index) => {
+    // Strictly slice the array so ONLY the first 9 main products display in the main grid
+    const mainGridProducts = products.slice(0, 9);
+
+    mainGridProducts.forEach((product, index) => {
         const card = document.createElement("div");
         card.className = "product-card";
 
@@ -244,6 +340,9 @@ function displayProducts() {
         if (isFeatured) {
             card.classList.add("featured");
         }
+
+        const isWishlisted = wishlist.includes(product.id);
+        const heartIconClass = isWishlisted ? "fa-solid fa-heart" : "fa-regular fa-heart";
 
         let badges = "";
         if (index === 0) {
@@ -270,8 +369,8 @@ function displayProducts() {
                     !isFeatured
                     ? `
                         <div class="hover-overlay">
-                            <button class="action-btn wishlist-btn" title="Add to Wishlist">
-                                <i class="fa-regular fa-heart"></i>
+                            <button class="action-btn wishlist-btn ${isWishlisted ? 'active' : ''}" title="Wishlist">
+                                <i class="${heartIconClass}"></i>
                             </button>
                             <button class="action-btn cart-btn" title="Add to Cart">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -306,20 +405,20 @@ function displayProducts() {
             }
 
             <div class="price">
-                ${
-                    isFeatured
-                    ? `<span class="old-price">$${product.oldPrice}</span>`
-                    : ""
-                }
-                $${product.price}
-            </div>
+    ${
+        product.oldPrice
+        ? `<span class="old-price">$${product.oldPrice.toLocaleString()}</span>`
+        : ""
+    }
+    $${product.price.toLocaleString()}
+</div>
 
             ${
                 isFeatured
                 ? `
                     <div class="card-buttons">
-                        <button class="wishlist">
-                            <i class="fa-regular fa-heart"></i>
+                        <button class="wishlist ${isWishlisted ? 'active' : ''}">
+                            <i class="${heartIconClass}"></i>
                         </button>
                         <button class="add-cart">
                             <i class="fa-solid fa-cart-shopping"></i>
@@ -334,7 +433,18 @@ function displayProducts() {
             }
         `;
 
-        // Cart button handler for overlay buttons (rest of the products)
+        // Wishlist handlers
+        const overlayWishlistBtn = card.querySelector(".hover-overlay .wishlist-btn");
+        if (overlayWishlistBtn) {
+            overlayWishlistBtn.addEventListener("click", (e) => toggleWishlist(product.id, e));
+        }
+
+        const featuredWishlistBtn = card.querySelector(".wishlist");
+        if (featuredWishlistBtn) {
+            featuredWishlistBtn.addEventListener("click", (e) => toggleWishlist(product.id, e));
+        }
+
+        // Cart handlers
         const overlayCartBtn = card.querySelector(".hover-overlay .cart-btn");
         if (overlayCartBtn) {
             overlayCartBtn.addEventListener("click", (e) => {
@@ -343,7 +453,6 @@ function displayProducts() {
             });
         }
 
-        // Cart button handler for featured card bottom bar
         const featuredCartBtn = card.querySelector(".add-cart");
         if (featuredCartBtn) {
             featuredCartBtn.addEventListener("click", (e) => {
@@ -417,7 +526,7 @@ if (searchInput) {
 }
 
 /* =====================================================
-   PRODUCT MODAL
+   PRODUCT MODAL LOGIC
 ===================================================== */
 let selectedProduct = null;
 let modalQuantity = 1;
@@ -430,13 +539,37 @@ function openModal(id) {
 
     document.getElementById("modalImage").src = selectedProduct.image;
     document.getElementById("modalName").textContent = selectedProduct.name;
-    document.getElementById("modalSku").textContent = selectedProduct.sku;
-    document.getElementById("modalBrand").textContent = selectedProduct.brand;
-    document.getElementById("modalPrice").textContent = "$" + selectedProduct.price;
-    document.getElementById("modalOldPrice").textContent = "$" + selectedProduct.oldPrice;
+    document.getElementById("modalSku").textContent = selectedProduct.sku || "XBOX001";
+    document.getElementById("modalBrand").textContent = selectedProduct.brand || "Microsoft";
+    document.getElementById("modalPrice").textContent = "$" + selectedProduct.price.toFixed(2);
+    
+    const oldPriceEl = document.getElementById("modalOldPrice");
+    const discountEl = document.getElementById("modalDiscount");
+
+    if (selectedProduct.oldPrice) {
+        oldPriceEl.textContent = "$" + selectedProduct.oldPrice.toFixed(2);
+        oldPriceEl.style.display = "inline";
+
+        const discountPct = Math.round(((selectedProduct.oldPrice - selectedProduct.price) / selectedProduct.oldPrice) * 100);
+        discountEl.textContent = `${discountPct}% OFF`;
+        discountEl.style.display = "inline-block";
+    } else {
+        oldPriceEl.style.display = "none";
+        discountEl.style.display = "none";
+    }
 
     modalQuantity = 1;
-    document.getElementById("modalQuantity").textContent = modalQuantity;
+    document.getElementById("modalQuantity").textContent = String(modalQuantity).padStart(2, "0");
+
+    // Initialize & Reset Interactive Stars
+    initStarRating();
+    currentProductRating = 5;
+    highlightStars(5, "active");
+    const ratingValEl = document.getElementById("modalRatingVal");
+    if (ratingValEl) {
+        ratingValEl.textContent = "4.7 Star Rating";
+    }
+
     modal.classList.add("active");
 }
 
@@ -448,14 +581,14 @@ document.getElementById("modalClose")?.addEventListener("click", closeModal);
 
 document.getElementById("modalPlus")?.addEventListener("click", () => {
     modalQuantity++;
-    document.getElementById("modalQuantity").textContent = modalQuantity;
+    document.getElementById("modalQuantity").textContent = String(modalQuantity).padStart(2, "0");
 });
 
 document.getElementById("modalMinus")?.addEventListener("click", () => {
     if (modalQuantity > 1) {
         modalQuantity--;
+        document.getElementById("modalQuantity").textContent = String(modalQuantity).padStart(2, "0");
     }
-    document.getElementById("modalQuantity").textContent = modalQuantity;
 });
 
 document.getElementById("modalAddCart")?.addEventListener("click", () => {
@@ -464,33 +597,106 @@ document.getElementById("modalAddCart")?.addEventListener("click", () => {
     closeModal();
 });
 
+document.getElementById("modalBuyNow")?.addEventListener("click", () => {
+    if (!selectedProduct) return;
+    addToCart(selectedProduct.id, modalQuantity);
+    window.location.href = "cart.html";
+});
+
 /* =====================================================
-   INITIALIZE PAGE
+   INTERACTIVE MODAL STAR RATING LOGIC
+===================================================== */
+let currentProductRating = 5;
+
+function initStarRating() {
+    const starContainer = document.getElementById("modalStars");
+    if (!starContainer) return;
+
+    const stars = starContainer.querySelectorAll("i");
+
+    stars.forEach((star) => {
+        const newStar = star.cloneNode(true);
+        star.parentNode.replaceChild(newStar, star);
+    });
+
+    const freshStars = starContainer.querySelectorAll("i");
+
+    freshStars.forEach((star) => {
+        star.addEventListener("mouseenter", function () {
+            const val = parseInt(this.getAttribute("data-value"));
+            highlightStars(val, "hover");
+        });
+
+        star.addEventListener("mouseleave", function () {
+            clearStarClasses("hover");
+            highlightStars(currentProductRating, "active");
+        });
+
+        star.addEventListener("click", function () {
+            currentProductRating = parseInt(this.getAttribute("data-value"));
+            highlightStars(currentProductRating, "active");
+
+            const ratingValEl = document.getElementById("modalRatingVal");
+            if (ratingValEl) {
+                ratingValEl.textContent = `${currentProductRating}.0 Star Rating`;
+            }
+        });
+    });
+}
+
+function highlightStars(count, className) {
+    const stars = document.querySelectorAll("#modalStars i");
+    stars.forEach((star, index) => {
+        if (index < count) {
+            star.classList.add(className);
+        } else {
+            star.classList.remove(className);
+        }
+    });
+}
+
+function clearStarClasses(className) {
+    const stars = document.querySelectorAll("#modalStars i");
+    stars.forEach((star) => star.classList.remove(className));
+}
+
+/* =====================================================
+   SINGLE INITIALIZE PAGE LISTENER
 ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
     displayProducts();
     renderCart();
 
-    createMiniProducts("flashSale", [products[1], products[2], products[3]]);
-    createMiniProducts("bestSellers", [products[4], products[5], products[2]]);
-    createMiniProducts("topRated", [products[6], products[4], products[5]]);
-    createMiniProducts("newArrival", [products[2], products[8], products[3]]);
-});
+    // 1. FLASH SALE TODAY COLUMN
+    createMiniProducts("flashSale", [
+        products[9],  // Bose Earbuds (Cam image)
+        products[2],  // Simple Mobile Phone (Mob image)
+        products[3]   // Smart TV (Console image)
+    ]);
 
-/* =====================================================
-   CLOSE BLACK FRIDAY BAR
-===================================================== */
-const offerClose = document.querySelector(".offer-close");
-if (offerClose) {
-    offerClose.addEventListener("click", () => {
-        document.querySelector(".top-offer").style.display = "none";
-    });
-}
-/* =====================================================
-   ALL CATEGORY DROPDOWN TOGGLE
-===================================================== */
-document.addEventListener("DOMContentLoaded", () => {
+    // 2. BEST SELLERS COLUMN
+    createMiniProducts("bestSellers", [
+        products[10], // Galaxy S21 (Console image)
+        products[12], // Galaxy 12 Gaming Phone (Drone image)
+        products[4]   // Sony Camera (Headphones image)
+    ]);
+
+    // 3. TOP RATED COLUMN
+    createMiniProducts("topRated", [
+        products[6],  // Portable Washing Machine (Drone image)
+        products[13], // Sony DSCHX8 Camera (Drone image)
+        products[5]   // Dell Optiplex Monitor (Mob2 image)
+    ]);
+
+    // 4. NEW ARRIVAL COLUMN
+    createMiniProducts("newArrival", [
+        products[11], // TOZO Earbuds (Mob image)
+        products[14], // JBL Bluetooth Speaker (Headphone image)
+        products[15]  // Wyze Cam Pan (Console image)
+    ]);
+
+    // Category Dropdown Toggle
     const categoryBtn = document.getElementById("categoryDropdownBtn");
     const categoryDropdown = categoryBtn?.parentElement;
 
@@ -500,13 +706,24 @@ document.addEventListener("DOMContentLoaded", () => {
             categoryDropdown.classList.toggle("active");
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener("click", (e) => {
             if (!categoryDropdown.contains(e.target)) {
                 categoryDropdown.classList.remove("active");
             }
         });
     }
+
+    // Black Friday Close
+    const offerClose = document.querySelector(".offer-close");
+    if (offerClose) {
+        offerClose.addEventListener("click", () => {
+            document.querySelector(".top-offer").style.display = "none";
+        });
+    }
+
+    // Deal Timer
+    const totalSeconds = (16 * 86400) + (21 * 3600) + (57 * 60) + 23;
+    startDealTimer(totalSeconds);
 });
 
 /* =====================================================
@@ -530,7 +747,6 @@ function startDealTimer(durationInSeconds) {
         const minutes = Math.floor((timeRemaining % 3600) / 60);
         const seconds = Math.floor(timeRemaining % 60);
 
-        // Format numbers with leading zeros (e.g., 05 instead of 5)
         const formatNum = (num) => String(num).padStart(2, "0");
 
         timerElement.textContent = `${formatNum(days)}d : ${formatNum(hours)}h : ${formatNum(minutes)}m : ${formatNum(seconds)}s`;
@@ -538,12 +754,6 @@ function startDealTimer(durationInSeconds) {
         timeRemaining--;
     }
 
-    updateTimer(); // Run once immediately
-    const timerInterval = setInterval(updateTimer, 1000); // Update every second
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
 }
-
-// Start timer when DOM is ready (16 days, 21 hours, 57 minutes, 23 seconds in total seconds)
-document.addEventListener("DOMContentLoaded", () => {
-    const totalSeconds = (16 * 86400) + (21 * 3600) + (57 * 60) + 23;
-    startDealTimer(totalSeconds);
-});

@@ -661,6 +661,46 @@ img {
     background-color: var(--orange);
     color: #ffffff;
 }
+/* =====================================================
+   WISHLIST ACTIVE STATES
+===================================================== */
+
+
+/* 1. Overlay Wishlist Button (Hover overlay on standard cards) */
+.action-btn.wishlist-btn.active {
+    background-color: var(--orange) !important;
+    color: #ffffff !important;
+}
+
+.action-btn.wishlist-btn.active i {
+    color: #ffffff !important;
+}
+
+/* 2. Featured Card Wishlist Button (Bottom bar on large card) */
+.wishlist {
+    background: #fff3e9;
+    color: var(--text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.wishlist.active {
+    background: var(--orange) !important;
+    color: #ffffff !important;
+}
+
+.wishlist.active i {
+    color: #ffffff !important;
+}
+
+/* 3. Modal Wishlist Button (Inside Quick View modal) */
+#modalWishlist.active {
+    background-color: var(--orange) !important;
+    color: #ffffff !important;
+}
+
+#modalWishlist.active i {
+    color: #ffffff !important;
+}
 .product-image {
     width: 100%;
     height: 83px;
@@ -1133,21 +1173,17 @@ footer {
 
 
 /* =====================================================
-   MODAL
+   PRODUCT MODAL (COMPLETE UPDATED CSS)
 ===================================================== */
 
 .modal-overlay {
     position: fixed;
     inset: 0;
-
-    background: rgba(0,0,0,.7);
-
+    background: rgba(0, 0, 0, 0.6);
     display: none;
-
     align-items: center;
     justify-content: center;
-
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .modal-overlay.active {
@@ -1155,136 +1191,241 @@ footer {
 }
 
 .product-modal {
-    width: 620px;
-
-    background: #fff;
-
+    width: 820px;
+    max-width: 92%;
+    background: #ffffff;
+    border-radius: 4px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 25px;
-
-    padding: 20px;
-
+    grid-template-columns: 380px 1fr;
+    gap: 28px;
+    padding: 24px;
     position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .modal-close {
     position: absolute;
-    right: -35px;
+    right: -36px;
     top: 0;
-
     width: 28px;
     height: 28px;
-
     border: 0;
     border-radius: 50%;
-
-    background: #222;
-    color: #fff;
-
-    font-size: 18px;
-}
-
-.modal-image {
-    height: 300px;
-
-    border: 1px solid var(--border);
-
+    background: #475156;
+    color: #ffffff;
+    font-size: 12px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.modal-close:hover {
+    background: #191c1f;
+}
+
+/* Image Container */
+.modal-image {
+    width: 100%;
+    height: 340px;
+    border: 1px solid #e4e7e9;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
 .modal-image img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
 }
 
+/* Content Area */
 .modal-content {
-    padding-top: 15px;
-}
-
-.modal-rating {
-    color: #f5bd00;
-    font-size: 10px;
-}
-
-.modal-rating small {
-    color: #777;
-    margin-left: 5px;
-}
-
-.modal-content h2 {
-    font-size: 16px;
-    line-height: 1.4;
-
-    margin: 15px 0;
-}
-
-.modal-content p {
-    font-size: 9px;
-    margin-bottom: 8px;
-}
-
-.modal-price {
-    margin-top: 20px;
-
     display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.modal-price strong {
-    color: var(--link);
-    font-size: 22px;
-}
-
-.modal-price del {
-    color: #999;
-    font-size: 12px;
-}
-
-.modal-actions {
-    display: flex;
-    gap: 8px;
-
-    margin-top: 25px;
-}
-
-.quantity {
-    display: flex;
-    border: 1px solid #ddd;
-}
-
-.quantity button {
-    border: 0;
-    background: white;
-    width: 30px;
-}
-
-.quantity span {
-    width: 30px;
-
-    display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
 }
 
-.modal-add {
-    flex: 1;
-
-    border: 0;
-
-    background: var(--orange);
-    color: #fff;
-
-    font-size: 9px;
-    font-weight: bold;
+.modal-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
 }
 
+.modal-rating .stars {
+    color: #fa8231;
+    letter-spacing: 1px;
+}
 
+.modal-rating .rating-text {
+    color: #5f6c72;
+    font-size: 10px;
+}
+
+.modal-rating .rating-text b {
+    color: #191c1f;
+}
+
+.modal-content h2 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #191c1f;
+    line-height: 1.4;
+    margin: 8px 0 12px;
+}
+
+/* 1. Metadata Grid (Sku, Availability, Brand, Category) */
+.modal-meta {
+    font-size: 10px;
+    color: #777f83;
+    margin-bottom: 30px;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.meta-row:last-child {
+    margin-bottom: 0;
+}
+
+.modal-meta strong {
+    color: #191c1f;
+}
+
+.modal-meta .in-stock {
+    color: #2db224;
+}
+
+/* 2. Price Section (Contains the grey divider line underneath) */
+.modal-price-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 120px;
+    border-bottom: 1px solid #e4e7e9; /* GREY DIVIDER LINE */
+}
+
+.modal-price-row .current-price {
+    color: #2da5f3;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.modal-price-row .old-price {
+    color: #92999f;
+    font-size: 13px;
+    text-decoration: line-through;
+}
+
+.modal-price-row .discount-tag {
+    background: #efd33b;
+    color: #191c1f;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 2px;
+}
+
+/* 3. Modal Actions Layout */
+.modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.modal-quantity-box {
+    width: 100px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e4e7e9;
+    height: 40px;
+    background: #f2f4f5;
+}
+
+.modal-quantity-box button {
+    border: 0;
+    background: transparent;
+    width: 30px;
+    height: 100%;
+    color: #475156;
+    font-size: 13px;
+}
+
+.modal-quantity-box span {
+    flex: 1;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #191c1f;
+}
+
+.btn-add-cart {
+    flex: 2;
+    height: 40px;
+    border: 0;
+    background: #fa8231;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.btn-add-cart:hover {
+    background: #e57227;
+}
+
+.btn-buy-now {
+    flex: 1;
+    height: 40px;
+    border: 1.5px solid #fa8231;
+    background: #ffffff;
+    color: #fa8231;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.btn-buy-now:hover {
+    background: #fff3e9;
+}
+
+/* =====================================================
+   INTERACTIVE RATING STARS
+===================================================== */
+.stars-interactive {
+    display: flex;
+    gap: 2px;
+    cursor: pointer;
+}
+
+.stars-interactive i {
+    color: #e4e7e9; /* Default gray for unselected stars */
+    font-size: 13px;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.stars-interactive i.active,
+.stars-interactive i.hover {
+    color: #fa8231; /* Clicon Theme Orange/Gold */
+}
+
+.stars-interactive i:hover {
+    transform: scale(1.15); /* Subtle pop effect on hover */
+}
 /* =====================================================
    RESPONSIVE
 ===================================================== */

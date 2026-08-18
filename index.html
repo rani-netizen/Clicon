@@ -549,62 +549,71 @@
 ===================================================== -->
 
 <div class="modal-overlay" id="productModal">
-
     <div class="product-modal">
-
-        <button id="modalClose" class="modal-close">
-            ×
+        <button class="modal-close" id="modalClose">
+            <i class="fa-solid fa-xmark"></i>
         </button>
 
         <div class="modal-image">
-            <img id="modalImage" src="" alt="">
+            <img id="modalImage" src="" alt="Product Image">
         </div>
 
         <div class="modal-content">
-
+            <!-- 1. Rating -->
             <div class="modal-rating">
-                ★★★★★
-                <small>4.7 Star Rating</small>
+    <div class="stars-interactive" id="modalStars">
+        <i class="fa-solid fa-star" data-value="1"></i>
+        <i class="fa-solid fa-star" data-value="2"></i>
+        <i class="fa-solid fa-star" data-value="3"></i>
+        <i class="fa-solid fa-star" data-value="4"></i>
+        <i class="fa-solid fa-star" data-value="5"></i>
+    </div>
+    <span class="rating-text">
+        <b id="modalRatingVal">4.7 Star Rating</b> 
+        (<span id="modalReviewCount">21,671</span> User feedback)
+    </span>
+</div>
+            <!-- 2. Title -->
+            <h2 id="modalName">Product Title</h2>
+
+            <!-- 3. Metadata Grid (Sku, Availability, Brand, Category) -->
+            <div class="modal-meta">
+                <div class="meta-row">
+                    <p>Sku: <strong id="modalSku">---</strong></p>
+                    <p>Availability: <strong class="in-stock">In Stock</strong></p>
+                </div>
+                <div class="meta-row">
+                    <p>Brand: <strong id="modalBrand">---</strong></p>
+                    <p>Category: <strong>Electronics Devices</strong></p>
+                </div>
             </div>
 
-            <h2 id="modalName"></h2>
-
-            <p>
-                SKU:
-                <span id="modalSku"></span>
-            </p>
-
-            <p>
-                Brand:
-                <span id="modalBrand"></span>
-            </p>
-
-            <div class="modal-price">
-                <strong id="modalPrice"></strong>
-                <del id="modalOldPrice"></del>
+            <!-- 4. Price Row (Above the grey line) -->
+            <div class="modal-price-row">
+                <strong id="modalPrice" class="current-price">$0.00</strong>
+                <del id="modalOldPrice" class="old-price">$0.00</del>
+                <span id="modalDiscount" class="discount-tag">21% OFF</span>
             </div>
 
+            <!-- 5. Actions Row -->
             <div class="modal-actions">
-
-                <div class="quantity">
+                <div class="modal-quantity-box">
                     <button id="modalMinus">−</button>
-                    <span id="modalQuantity">1</span>
+                    <span id="modalQuantity">01</span>
                     <button id="modalPlus">+</button>
                 </div>
 
-                <button id="modalAddCart" class="modal-add">
-                    ADD TO CART
+                <button class="btn-add-cart" id="modalAddCart">
+                    ADD TO CART <i class="fa-solid fa-cart-shopping"></i>
                 </button>
 
+                <button class="btn-buy-now" id="modalBuyNow">
+                    BUY NOW
+                </button>
             </div>
-
         </div>
-
     </div>
-
 </div>
-
-
 <script src="script.js"></script>
 
 </body>
