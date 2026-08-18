@@ -873,7 +873,7 @@ img {
 }
 
 .category {
-    flex: 0 0 102px;
+    flex: 0 0 120px;
     height: 117px;
 
     border: 1px solid var(--border);
@@ -1173,7 +1173,7 @@ footer {
 
 
 /* =====================================================
-   PRODUCT MODAL (COMPLETE UPDATED CSS)
+   PRODUCT MODAL (MATCHES FIGMA TEMPLATE PERFECTLY)
 ===================================================== */
 
 .modal-overlay {
@@ -1191,18 +1191,19 @@ footer {
 }
 
 .product-modal {
-    width: 820px;
+    width: 680px; /* Reduced from 820px to match Figma scale */
     max-width: 92%;
     background: #ffffff;
     border-radius: 4px;
     display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 28px;
-    padding: 24px;
+    grid-template-columns: 280px 1fr; /* Proportional image-to-content split */
+    gap: 20px;
+    padding: 20px;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Original Close Button Style */
 .modal-close {
     position: absolute;
     right: -36px;
@@ -1224,16 +1225,16 @@ footer {
     background: #191c1f;
 }
 
-/* Image Container */
+/* Compact Image Frame */
 .modal-image {
     width: 100%;
-    height: 340px;
+    height: 230px; /* Reduced from 340px to eliminate vertical stretching */
     border: 1px solid #e4e7e9;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 12px;
 }
 
 .modal-image img {
@@ -1242,57 +1243,43 @@ footer {
     object-fit: contain;
 }
 
-/* Content Area */
+/* Content Column Alignment */
 .modal-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .modal-rating {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 11px;
-}
-
-.modal-rating .stars {
-    color: #fa8231;
-    letter-spacing: 1px;
+    font-size: 10px;
 }
 
 .modal-rating .rating-text {
     color: #5f6c72;
-    font-size: 10px;
-}
-
-.modal-rating .rating-text b {
-    color: #191c1f;
+    font-size: 9px;
 }
 
 .modal-content h2 {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: #191c1f;
-    line-height: 1.4;
-    margin: 8px 0 12px;
+    line-height: 1.35;
+    margin: 4px 0;
 }
 
-/* 1. Metadata Grid (Sku, Availability, Brand, Category) */
 .modal-meta {
-    font-size: 10px;
+    font-size: 9px;
     color: #777f83;
-    margin-bottom: 30px;
+    margin-bottom: 8px;
 }
 
 .meta-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 4px;
-}
-
-.meta-row:last-child {
-    margin-bottom: 0;
+    margin-bottom: 3px;
 }
 
 .modal-meta strong {
@@ -1303,38 +1290,38 @@ footer {
     color: #2db224;
 }
 
-/* 2. Price Section (Contains the grey divider line underneath) */
+/* Price Section - Margin Gap Fix */
 .modal-price-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-bottom: 16px;
-    margin-bottom: 120px;
-    border-bottom: 1px solid #e4e7e9; /* GREY DIVIDER LINE */
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 70px; /* Reduced from 120px to eliminate huge blank space */
+    border-bottom: 1px solid #e4e7e9;
 }
 
 .modal-price-row .current-price {
     color: #2da5f3;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
 }
 
 .modal-price-row .old-price {
     color: #92999f;
-    font-size: 13px;
+    font-size: 11px;
     text-decoration: line-through;
 }
 
 .modal-price-row .discount-tag {
     background: #efd33b;
     color: #191c1f;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
-    padding: 3px 6px;
+    padding: 2px 5px;
     border-radius: 2px;
 }
 
-/* 3. Modal Actions Layout */
+/* Modal Actions Layout */
 .modal-actions {
     display: flex;
     align-items: center;
@@ -1343,44 +1330,44 @@ footer {
 }
 
 .modal-quantity-box {
-    width: 100px;
+    width: 85px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     border: 1px solid #e4e7e9;
-    height: 40px;
-    background: #f2f4f5;
+    height: 36px;
+    background: #ffffff;
 }
 
 .modal-quantity-box button {
     border: 0;
     background: transparent;
-    width: 30px;
+    width: 26px;
     height: 100%;
     color: #475156;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .modal-quantity-box span {
     flex: 1;
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     color: #191c1f;
 }
 
 .btn-add-cart {
     flex: 2;
-    height: 40px;
+    height: 36px;
     border: 0;
     background: #fa8231;
     color: #ffffff;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     white-space: nowrap;
 }
 
@@ -1390,11 +1377,11 @@ footer {
 
 .btn-buy-now {
     flex: 1;
-    height: 40px;
+    height: 36px;
     border: 1.5px solid #fa8231;
     background: #ffffff;
     color: #fa8231;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -1402,7 +1389,6 @@ footer {
 .btn-buy-now:hover {
     background: #fff3e9;
 }
-
 /* =====================================================
    INTERACTIVE RATING STARS
 ===================================================== */
@@ -1672,7 +1658,7 @@ footer {
 
 .nav-content {
     height: 40px;
-
+    padding-left: 155px;
     display: flex;
     align-items: center;
 
@@ -1733,7 +1719,7 @@ footer {
     width: 100%;
 
     background: #f3f5f6;
-
+     margin-top: 20px;
     border-bottom: 1px solid #e4e7e9;
 }
 
@@ -1749,10 +1735,17 @@ footer {
     gap: 8px;
 }
 
+.breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
 .breadcrumb i {
     color: #777f83;
-
     font-size: 8px;
+    display:inline-block;
 }
 
 .breadcrumb span {
@@ -1767,6 +1760,7 @@ footer {
     font-size: 7px;
 
     font-weight: 500;
+    line-height: 1;
 }
 
 
@@ -1877,6 +1871,7 @@ footer {
         .8fr;
 
     align-items: center;
+    gap:10px;
 
     padding: 10px;
 
@@ -1926,23 +1921,32 @@ footer {
 ===================================================== */
 
 .remove-cart {
-    border: 0;
-
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #cccccc;
     background: transparent;
-
-    color: #999;
-
-    font-size: 6px;
-
-    padding: 0;
+    color: #999999;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 8px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
 }
 
 .remove-cart:hover {
+    border-color: #ee5253;
     color: #e75b5b;
 }
 
 .remove-cart i {
-    margin-right: 3px;
+    font-size: 6px; /* Reduce this value (e.g., 7px or 8px) to make X smaller */
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
 
@@ -2105,7 +2109,7 @@ footer {
 ===================================================== */
 
 .total-row {
-    min-height: 30px;
+    min-height: 20px;
 
     display: flex;
 
@@ -2114,8 +2118,6 @@ footer {
     justify-content: space-between;
 
     padding: 0 14px;
-
-    border-bottom: 1px solid #f0f1f2;
 
     font-size: 7px;
 
@@ -2268,7 +2270,14 @@ footer .footer-content {
     padding-top: 34px;
     padding-bottom: 26px;
 }
-
+/* =====================================================
+   4-COLUMN FOOTER OVERRIDE (FOR CART / NO-TAGS PAGES)
+===================================================== */
+.footer-grid.footer-4-col {
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    width: 650px;
+    margin: 0 auto;
+}
 
 /* Footer brand */
 .brand-column .footer-logo {
@@ -2331,6 +2340,26 @@ footer .footer-content {
     color: #f5d52d;
 }
 
+/* =====================================================
+   POPULAR TAGS HOVER EFFECT
+===================================================== */
+.tags span {
+    border: 1px solid #303639; /* Subtle dark border in default state */
+    color: #a4a9ab;
+    padding: 4px 8px;
+    font-size: 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+/* Hover state matching the Figma/UI design */
+.tags span:hover {
+    border-color: #ffffff !important; /* Bright white border on hover */
+    color: #ffffff !important;        /* Crisp white text on hover */
+    background: #2a3033;   /* Slightly lighter dark background highlight */
+}
 
 /* =====================================================
    CART FOOTER APP BUTTON

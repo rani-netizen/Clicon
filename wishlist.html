@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist - Clicon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<!-- Header (Matches index.html / cart.html) -->
+<header>
+    <div class="blue-main">
+        <div class="page-width blue-main-inner">
+            <a href="index.html" class="brand">
+                <span><img src="images/Icon.svg" height="20" width="20"></span>
+                <strong>CLICON</strong>
+            </a>
+            <div class="search">
+                <input id="searchInput" type="text" placeholder="Search for anything...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="header-icons">
+                <a href="cart.html" class="header-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cartCount">0</span>
+                </a>
+                <a href="wishlist.html"><i class="fa-solid fa-heart"></i></a>
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+    <div class="page-width container">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+        <i class="fa-solid fa-chevron-right"></i>
+        <strong>Wishlist</strong>
+    </div>
+</div>
+
+<!-- Wishlist Content -->
+<main class="page-width wishlist-page">
+    <h2>My Wishlist</h2>
+    <div id="wishlistGrid" class="deal-products wishlist-grid">
+        <!-- JavaScript will render wishlisted cards here -->
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

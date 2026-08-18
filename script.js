@@ -77,62 +77,110 @@ const products = [
         sku: "JBL009"
     },
 
-    // --- DEDICATED MINI COLUMN PRODUCTS (IDs 10 to 16) ---
+    // --- DEDICATED MINI COLUMN PRODUCTS (12 UNIQUE ITEMS: IDs 10 to 21) ---
+
+    // COLUMN 1: FLASH SALE TODAY
     {
         id: 10,
-        name: "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear...",
+        name: "Bose Sport Earbuds - Wireless Earphones...",
         price: 1500,
-        image: "images/flashcam.svg",
+        image: "images/flashcam.svg", // Change image path here if needed
         brand: "Bose",
-        sku: "MINI01"
+        sku: "MINI10"
     },
     {
         id: 11,
+        name: "Simple Mobile 4G LTE Prepaid Smartphone",
+        price: 1500,
+        image: "images/mob2.svg",
+        brand: "Simple Mobile",
+        sku: "MINI11"
+    },
+    {
+        id: 12,
+        name: "4K UHD LED Smart TV with Chromecast",
+        price: 1500,
+        image: "images/keyboard.svg",
+        brand: "Samsung",
+        sku: "MINI12"
+    },
+
+    // COLUMN 2: BEST SELLERS
+    {
+        id: 13,
         name: "Samsung Electronics Samsung Galaxy S21 5G",
         price: 1500,
         image: "images/Image.svg",
         brand: "Samsung",
-        sku: "MINI02"
-    },
-    {
-        id: 12,
-        name: "TOZO T6 True Wireless Earbuds Bluetooth Headpho...",
-        price: 1500,
-        image: "images/mob.svg",
-        brand: "TOZO",
-        sku: "MINI03"
-    },
-    {
-        id: 13,
-        name: "Simple Mobile 5G LTE Galaxy 12 Mini 512GB Gaming Phone",
-        price: 1500,
-        image: "images/mob.svg",
-        brand: "Simple Mobile",
-        sku: "MINI04"
+        sku: "MINI13"
     },
     {
         id: 14,
-        name: "Sony DSCHX8 High Zoom Point & Shoot Camera",
+        name: "Simple Mobile 5G LTE Galaxy 12 Mini",
         price: 1500,
-        image: "images/drone.svg",
-        brand: "Sony",
-        sku: "MINI05"
+        image: "images/webcam2.svg",
+        brand: "Simple Mobile",
+        sku: "MINI14"
     },
     {
         id: 15,
-        name: "JBL FLIP 4 - Waterproof Portable Bluetooth Speaker...",
+        name: "Sony DSCHX8 High Zoom Point & Shoot Camera",
         price: 1500,
-        image: "images/headphones copy.svg",
-        brand: "JBL",
-        sku: "MINI06"
+        image: "images/Poco.svg",
+        brand: "Sony",
+        sku: "MINI15"
     },
+
+    // COLUMN 3: TOP RATED
     {
         id: 16,
-        name: "Wyze Cam Pan v2 1080p Pan/Tilt/Zoom Wi-Fi Indoor Smart...",
+        name: "Portable Washing Machine, 11lbs capacity",
+        price: 1500,
+        image: "images/tv2.svg",
+        brand: "Portable",
+        sku: "MINI16"
+    },
+    {
+        id: 17,
+        name: "Sony DSCHX8 High Zoom Camera V2",
+        price: 1500,
+        image: "images/drone.svg",
+        brand: "Sony",
+        sku: "MINI17"
+    },
+    {
+        id: 18,
+        name: "Dell Optiplex 7000x7480 Computer Monitor",
+        price: 1500,
+        image: "images/speaker.svg",
+        brand: "Dell",
+        sku: "MINI18"
+    },
+
+    // COLUMN 4: NEW ARRIVAL
+    {
+        id: 19,
+        name: "TOZO T6 True Wireless Earbuds Bluetooth",
+        price: 1500,
+        image: "images/mob.svg",
+        brand: "TOZO",
+        sku: "MINI19"
+    },
+    {
+        id: 20,
+        name: "JBL FLIP 4 - Waterproof Portable Speaker",
+        price: 1500,
+        image: "images/printer.svg",
+        brand: "JBL",
+        sku: "MINI20"
+    },
+    {
+        id: 21,
+        name: "Wyze Cam Pan v2 1080p Smart Camera",
         price: 1500,
         image: "images/console.svg",
         brand: "Wyze",
-        sku: "MINI07"
+        sku: "MINI21"
     }
 ];
 
@@ -158,6 +206,7 @@ function toggleWishlist(id, event) {
 
     saveWishlist();
     displayProducts();
+    renderWishlistPage();
 
     if (selectedProduct && selectedProduct.id === id) {
         updateModalWishlistState();
@@ -176,7 +225,59 @@ function updateModalWishlistState() {
         icon.className = isWishlisted ? "fa-solid fa-heart" : "fa-regular fa-heart";
     }
 }
+/* =====================================================
+   WISHLIST PAGE RENDERING
+===================================================== */
+function renderWishlistPage() {
+    const container = document.getElementById("wishlistGrid");
+    if (!container) return; // Only runs on wishlist.html
 
+    container.innerHTML = "";
+
+    if (wishlist.length === 0) {
+        container.innerHTML = `
+            <div class="empty-cart" style="grid-column: span 5; padding: 40px 0;">
+                <i class="fa-regular fa-heart" style="font-size: 32px; color: #ccc;"></i>
+                <h3>Your Wishlist is Empty</h3>
+                <p>Explore products and click the heart icon to save your favorites!</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Filter products that exist in the wishlist array
+    const wishlistedProducts = products.filter(p => wishlist.includes(p.id));
+
+    wishlistedProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        card.innerHTML = `
+            <div class="product-image-wrapper">
+                <img class="product-image" src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="product-name">${product.name}</div>
+            <div class="price">$${product.price.toLocaleString()}</div>
+            
+            <div class="card-buttons" style="margin-top: 8px;">
+                <button class="add-cart" onclick="addToCart(${product.id})">
+                    <i class="fa-solid fa-cart-shopping"></i> ADD TO CART
+                </button>
+                <button class="wishlist active" onclick="toggleWishlist(${product.id}, event)" title="Remove from Wishlist">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        `;
+
+        card.addEventListener("click", (e) => {
+            if (!e.target.closest("button")) {
+                openModal(product.id);
+            }
+        });
+
+        container.appendChild(card);
+    });
+}
 /* =====================================================
    CART STORAGE & COUNTER
 ===================================================== */
@@ -222,32 +323,38 @@ function addToCart(id, quantity = 1) {
 /* =====================================================
    CART RENDERING & TOTALS
 ===================================================== */
+/* =====================================================
+   CART RENDERING (FORMATTED QUANTITY)
+===================================================== */
 function renderCart() {
-    const cartItemsContainer = document.getElementById("cartItems");
-    if (!cartItemsContainer) return;
+    const cartItemsContainer = document.getElementById("cartItems"); //[cite: 9]
+    if (!cartItemsContainer) return; //[cite: 9]
 
-    cartItemsContainer.innerHTML = "";
+    cartItemsContainer.innerHTML = ""; //[cite: 9]
 
-    if (cart.length === 0) {
+    if (cart.length === 0) { //[cite: 9]
         cartItemsContainer.innerHTML = `
             <div class="empty-cart">
                 <i class="fa-solid fa-cart-flatbed"></i>
                 <h3>Your Cart is Empty</h3>
                 <p>Add items from the store to view them here.</p>
             </div>
-        `;
-        updateCartTotals(0);
-        return;
+        `; //[cite: 9]
+        updateCartTotals(0); //[cite: 9]
+        return; //[cite: 9]
     }
 
-    let subtotalSum = 0;
+    let subtotalSum = 0; //[cite: 9]
 
-    cart.forEach(item => {
-        const itemSubtotal = item.price * item.quantity;
-        subtotalSum += itemSubtotal;
+    cart.forEach(item => { //[cite: 9]
+        const itemSubtotal = item.price * item.quantity; //[cite: 9]
+        subtotalSum += itemSubtotal; //[cite: 9]
 
-        const cartItem = document.createElement("div");
-        cartItem.className = "cart-item";
+        // Format quantity to always show two digits (01, 02, etc.)
+        const formattedQuantity = String(item.quantity).padStart(2, "0");
+
+        const cartItem = document.createElement("div"); //[cite: 9]
+        cartItem.className = "cart-item"; //[cite: 9]
 
         cartItem.innerHTML = `
             <div class="cart-product-info">
@@ -266,19 +373,19 @@ function renderCart() {
 
             <div class="cart-quantity">
                 <button onclick="changeQuantity(${item.id}, -1)">−</button>
-                <span>${item.quantity}</span>
+                <span>${formattedQuantity}</span>
                 <button onclick="changeQuantity(${item.id}, 1)">+</button>
             </div>
 
             <div class="cart-subtotal">
                 $${itemSubtotal.toFixed(2)}
             </div>
-        `;
+        `; //[cite: 9]
 
-        cartItemsContainer.appendChild(cartItem);
+        cartItemsContainer.appendChild(cartItem); //[cite: 9]
     });
 
-    updateCartTotals(subtotalSum);
+    updateCartTotals(subtotalSum); //[cite: 9]
 }
 
 function changeQuantity(id, delta) {
@@ -329,7 +436,6 @@ function displayProducts() {
 
     grid.innerHTML = "";
 
-    // Strictly slice the array so ONLY the first 9 main products display in the main grid
     const mainGridProducts = products.slice(0, 9);
 
     mainGridProducts.forEach((product, index) => {
@@ -405,13 +511,13 @@ function displayProducts() {
             }
 
             <div class="price">
-    ${
-        product.oldPrice
-        ? `<span class="old-price">$${product.oldPrice.toLocaleString()}</span>`
-        : ""
-    }
-    $${product.price.toLocaleString()}
-</div>
+                ${
+                    product.oldPrice
+                    ? `<span class="old-price">$${product.oldPrice.toLocaleString()}</span>`
+                    : ""
+                }
+                $${product.price.toLocaleString()}
+            </div>
 
             ${
                 isFeatured
@@ -433,7 +539,6 @@ function displayProducts() {
             }
         `;
 
-        // Wishlist handlers
         const overlayWishlistBtn = card.querySelector(".hover-overlay .wishlist-btn");
         if (overlayWishlistBtn) {
             overlayWishlistBtn.addEventListener("click", (e) => toggleWishlist(product.id, e));
@@ -444,7 +549,6 @@ function displayProducts() {
             featuredWishlistBtn.addEventListener("click", (e) => toggleWishlist(product.id, e));
         }
 
-        // Cart handlers
         const overlayCartBtn = card.querySelector(".hover-overlay .cart-btn");
         if (overlayCartBtn) {
             overlayCartBtn.addEventListener("click", (e) => {
@@ -561,7 +665,6 @@ function openModal(id) {
     modalQuantity = 1;
     document.getElementById("modalQuantity").textContent = String(modalQuantity).padStart(2, "0");
 
-    // Initialize & Reset Interactive Stars
     initStarRating();
     currentProductRating = 5;
     highlightStars(5, "active");
@@ -661,39 +764,40 @@ function clearStarClasses(className) {
 }
 
 /* =====================================================
-   SINGLE INITIALIZE PAGE LISTENER
+   PAGE INITIALIZATION (12 MINI PRODUCTS: 4 COLS x 3 ROWS)
 ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
     displayProducts();
     renderCart();
+    renderWishlistPage();
 
-    // 1. FLASH SALE TODAY COLUMN
+    // 1. FLASH SALE TODAY (IDs 10, 11, 12)
     createMiniProducts("flashSale", [
-        products[9],  // Bose Earbuds (Cam image)
-        products[2],  // Simple Mobile Phone (Mob image)
-        products[3]   // Smart TV (Console image)
+        products[9],  // ID 10
+        products[10], // ID 11
+        products[11]  // ID 12
     ]);
 
-    // 2. BEST SELLERS COLUMN
+    // 2. BEST SELLERS (IDs 13, 14, 15)
     createMiniProducts("bestSellers", [
-        products[10], // Galaxy S21 (Console image)
-        products[12], // Galaxy 12 Gaming Phone (Drone image)
-        products[4]   // Sony Camera (Headphones image)
+        products[12], // ID 13
+        products[13], // ID 14
+        products[14]  // ID 15
     ]);
 
-    // 3. TOP RATED COLUMN
+    // 3. TOP RATED (IDs 16, 17, 18)
     createMiniProducts("topRated", [
-        products[6],  // Portable Washing Machine (Drone image)
-        products[13], // Sony DSCHX8 Camera (Drone image)
-        products[5]   // Dell Optiplex Monitor (Mob2 image)
+        products[15], // ID 16
+        products[16], // ID 17
+        products[17]  // ID 18
     ]);
 
-    // 4. NEW ARRIVAL COLUMN
+    // 4. NEW ARRIVAL (IDs 19, 20, 21)
     createMiniProducts("newArrival", [
-        products[11], // TOZO Earbuds (Mob image)
-        products[14], // JBL Bluetooth Speaker (Headphone image)
-        products[15]  // Wyze Cam Pan (Console image)
+        products[18], // ID 19
+        products[19], // ID 20
+        products[20]  // ID 21
     ]);
 
     // Category Dropdown Toggle
