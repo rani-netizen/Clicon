@@ -184,47 +184,32 @@ const products = [
     }
 ];
 
-let cart = JSON.parse(localStorage.getItem("cliconCart")) || [];
+let cart = JSON.parse(localStorage.getItem("cliconCart")) || []; //get the saved cart from the browser 
 let wishlist = JSON.parse(localStorage.getItem("cliconWishlist")) || [];
 
 /* =====================================================
    WISHLIST STORAGE & MANAGEMENT
 ===================================================== */
 function saveWishlist() {
-    localStorage.setItem("cliconWishlist", JSON.stringify(wishlist));
-}
+    localStorage.setItem("cliconWishlist", JSON.stringify(wishlist));//the objects has to be converted to text or string beforee storing to the localSTroage
+}//save the current cart in the browser
 
 function toggleWishlist(id, event) {
-    if (event) event.stopPropagation();
+    if (event) event.stopPropagation();//stop opening the product modal
 
     const index = wishlist.indexOf(id);
-    if (index > -1) {
-        wishlist.splice(index, 1);
+    if (index > -1) {//if product found or if product not found return -1
+        wishlist.splice(index, 1);//remove item from the array like switvh on and off
     } else {
         wishlist.push(id);
     }
 
     saveWishlist();
-    displayProducts();
-    renderWishlistPage();
+    displayProducts();//becaue wihlist appearance ha to be changed
+    renderWishlistPage();//make changes in the wishlist page
 
-    if (selectedProduct && selectedProduct.id === id) {
-        updateModalWishlistState();
-    }
 }
 
-function updateModalWishlistState() {
-    const modalWishlistBtn = document.getElementById("modalWishlist");
-    if (!modalWishlistBtn || !selectedProduct) return;
-
-    const isWishlisted = wishlist.includes(selectedProduct.id);
-    modalWishlistBtn.classList.toggle("active", isWishlisted);
-    
-    const icon = modalWishlistBtn.querySelector("i");
-    if (icon) {
-        icon.className = isWishlisted ? "fa-solid fa-heart" : "fa-regular fa-heart";
-    }
-}
 /* =====================================================
    WISHLIST PAGE RENDERING
 ===================================================== */
@@ -279,30 +264,31 @@ function renderWishlistPage() {
     });
 }
 /* =====================================================
-   CART STORAGE & COUNTER
+   CART STORAGE & COUNTER Saves the current cart data into localStorage.
 ===================================================== */
 function saveCart() {
     localStorage.setItem("cliconCart", JSON.stringify(cart));
 }
-
+//Calculates the total quantity of products in the cart and updates the cart counter.
 function updateCartCount() {
     const elements = document.querySelectorAll("#cartCount");
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
+    //reduce to get final single value and 0 is used to start from 0 ,sum=0
     elements.forEach(element => {
         element.textContent = totalItems;
-    });
+    });//for every cart count ,Js changes its text
 }
 
 /* =====================================================
-   ADD TO CART FUNCTIONALITY
+   ADD TO CART FUNCTIONALITY Finds a product and adds it to the cart. If it already exists, it increases its quantity.
 ===================================================== */
 function addToCart(id, quantity = 1) {
     const product = products.find(item => item.id === id);
-    if (!product) return;
+    if (!product)//product does not exist
+     return;//stop function if no product
 
     const existing = cart.find(item => item.id === id);
-
+    //if product already existing
     if (existing) {
         existing.quantity += quantity;
     } else {
@@ -321,41 +307,38 @@ function addToCart(id, quantity = 1) {
 }
 
 /* =====================================================
-   CART RENDERING & TOTALS
-===================================================== */
-/* =====================================================
-   CART RENDERING (FORMATTED QUANTITY)
+   CART RENDERING (FORMATTED QUANTITY) to display items in cart.html
 ===================================================== */
 function renderCart() {
-    const cartItemsContainer = document.getElementById("cartItems"); //[cite: 9]
-    if (!cartItemsContainer) return; //[cite: 9]
+    const cartItemsContainer = document.getElementById("cartItems"); //look for cart container
+    if (!cartItemsContainer) return; 
 
-    cartItemsContainer.innerHTML = ""; //[cite: 9]
+    cartItemsContainer.innerHTML = ""; //clears the container eg suppose cart contains xbox,lap after qty updated it shouldnt show xbox,lap,xbox,comp so it clears cart
 
-    if (cart.length === 0) { //[cite: 9]
+    if (cart.length === 0) { 
         cartItemsContainer.innerHTML = `
             <div class="empty-cart">
                 <i class="fa-solid fa-cart-flatbed"></i>
                 <h3>Your Cart is Empty</h3>
                 <p>Add items from the store to view them here.</p>
             </div>
-        `; //[cite: 9]
-        updateCartTotals(0); //[cite: 9]
-        return; //[cite: 9]
+        `; 
+        updateCartTotals(0); 
+        return; 
     }
 
-    let subtotalSum = 0; //[cite: 9]
+    let subtotalSum = 0; 
 
-    cart.forEach(item => { //[cite: 9]
-        const itemSubtotal = item.price * item.quantity; //[cite: 9]
-        subtotalSum += itemSubtotal; //[cite: 9]
+    cart.forEach(item => { 
+        const itemSubtotal = item.price * item.quantity; 
+        subtotalSum += itemSubtotal; 
 
         // Format quantity to always show two digits (01, 02, etc.)
-        const formattedQuantity = String(item.quantity).padStart(2, "0");
+        const formattedQuantity = String(item.quantity).padStart(2, "0");//atleast 2 characters
 
-        const cartItem = document.createElement("div"); //[cite: 9]
-        cartItem.className = "cart-item"; //[cite: 9]
-
+        const cartItem = document.createElement("div"); //creates the element div
+        cartItem.className = "cart-item"; // creates <div class="cart-item"></div>
+        //toFixed(2) for 2300.00 last two decimal zeroes-->
         cartItem.innerHTML = `
             <div class="cart-product-info">
                 <button class="remove-cart" onclick="removeFromCart(${item.id})" aria-label="Remove Product">
@@ -380,13 +363,14 @@ function renderCart() {
             <div class="cart-subtotal">
                 $${itemSubtotal.toFixed(2)}
             </div>
-        `; //[cite: 9]
+        `; 
 
-        cartItemsContainer.appendChild(cartItem); //[cite: 9]
+        cartItemsContainer.appendChild(cartItem); //add the cartItem to the container
     });
 
-    updateCartTotals(subtotalSum); //[cite: 9]
+    updateCartTotals(subtotalSum); 
 }
+//insiede the cart page change quantity
 
 function changeQuantity(id, delta) {
     const item = cart.find(product => product.id === id);
@@ -403,6 +387,7 @@ function changeQuantity(id, delta) {
     updateCartCount();
     renderCart();
 }
+//inside the cart page remove the item
 
 function removeFromCart(id) {
     cart = cart.filter(item => item.id !== id);
