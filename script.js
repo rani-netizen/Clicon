@@ -756,6 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
     displayProducts();
     renderCart();
     renderWishlistPage();
+    changeText();
 
     // 1. FLASH SALE TODAY (IDs 10, 11, 12)
     createMiniProducts("flashSale", [
@@ -845,4 +846,10 @@ function startDealTimer(durationInSeconds) {
 
     updateTimer();
     const timerInterval = setInterval(updateTimer, 1000);
+}
+
+function changeText(){
+    const change=document.querySelector("#productsGrid > div:nth-child(3) > div.product-name");
+    change.textContent= `Simple Mobile 5G LTE Prepaid Smartphone`;
+            
 }
