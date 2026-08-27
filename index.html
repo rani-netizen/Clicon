@@ -409,6 +409,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      YOUTUBE VIDEO
 ===================================================== -->
 
+<!-- =====================================================
+     YOUTUBE VIDEO
+===================================================== -->
+
 <section class="youtube-section page-width">
 
     <div class="youtube-title">
@@ -416,13 +420,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Learn more about our products and shopping experience.</p>
     </div>
 
-    <div class="youtube-video">
-
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/N08Ek0N_Olc?si=Ko77Dv7a-aJKZ63R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+    <div class="youtube-video" id="youtubeContainer">
+        <div class="youtube-consent-message">
+            <p>Please accept Functional cookies to watch this video.</p>
+        </div>
     </div>
 
 </section>
+
+<script>
+    function loadYouTubeVideo() {
+        const container = document.getElementById("youtubeContainer");
+
+        if (!container || container.querySelector("iframe")) {
+            return;
+        }
+
+        const iframe = document.createElement("iframe");
+
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.src = "https://www.youtube.com/embed/N08Ek0N_Olc?si=Ko77Dv7a-aJKZ63R";
+        iframe.title = "YouTube video player";
+        iframe.frameBorder = "0";
+        iframe.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+
+        container.innerHTML = "";
+        container.appendChild(iframe);
+    }
+
+    document.addEventListener("cookieyes_banner_load", function (eventData) {
+        const data = eventData.detail;
+
+        if (data.categories && data.categories.functional) {
+            loadYouTubeVideo();
+        }
+    });
+
+    document.addEventListener("cookieyes_consent_update", function (eventData) {
+        const data = eventData.detail;
+
+        if (data.accepted && data.accepted.includes("functional")) {
+            loadYouTubeVideo();
+        }
+    });
+</script>
 
 </main>
 
