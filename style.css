@@ -3412,3 +3412,65 @@ footer .copyright {
     height: 100%;
     border: 0;
 }
+
+ /* =====================================================
+    VIMEO VIDEO SECTION
+ ===================================================== */
+
+.vimeo-section {
+
+    padding-top: 35px;
+
+    padding-bottom: 35px;
+
+}
+
+.vimeo-title {
+
+    text-align: center;
+
+    margin-bottom: 15px;
+
+}
+
+.vimeo-title h2 {
+
+    font-size: 18px;
+
+    margin-bottom: 6px;
+
+}
+
+.vimeo-title p {
+
+    font-size: 10px;
+
+    color: #6b7175;
+
+}
+
+.vimeo-video {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    aspect-ratio: 16 / 9;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    background: #000;
+
+}
+
+.vimeo-video iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+
+}
