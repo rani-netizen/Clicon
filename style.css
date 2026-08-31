@@ -3450,19 +3450,13 @@ footer .copyright {
 }
 
 .vimeo-video {
-
+    position: relative;
     width: 100%;
-
     max-width: 850px;
-
     aspect-ratio: 16 / 9;
-
     margin: 0 auto;
-
     overflow: hidden;
-
     background: #000;
-
 }
 
 .vimeo-video iframe {
