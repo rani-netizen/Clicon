@@ -3468,3 +3468,50 @@ footer .copyright {
     border: 0;
 
 }
+/* =========================================================
+   DAILYMOTION VIDEO
+   ========================================================= */
+
+.dailymotion-section {
+    width: 100%;
+}
+
+.dailymotion-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dailymotion-title h2 {
+    margin-bottom: 5px;
+}
+
+.dailymotion-title p {
+    margin: 0;
+    color: #666;
+}
+
+.dailymotion-video {
+    position: relative;
+    width: 100%;
+    height: 478px;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.video-placeholder-dailymotion {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+}
+
+.video-placeholder-dailymotion p {
+    margin: 0;
+    padding: 12px 20px;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 16px;
+}
