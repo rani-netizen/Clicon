@@ -2,34 +2,104 @@
 <html lang="en">
 <head>
 
-   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-THR28RFP');</script>
-<!-- End Google Tag Manager -->
+
+<!-- GCM-->
+   <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag() {
+       dataLayer.push(arguments);
+   }
+   gtag("consent", "default", {
+       ad_storage: "denied",
+       ad_user_data: "denied",
+       ad_personalization: "denied",
+       analytics_storage: "denied",
+       functionality_storage: "denied",
+       personalization_storage: "denied",
+       security_storage: "granted",
+       wait_for_update: 2000,
+   });
+   gtag("set", "ads_data_redaction", true);
+   gtag("set", "url_passthrough", true);
+</script>
 
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Clicon - Home</title>
-    <link rel="stylesheet" href="style.css">
+<!-- Start cookieyes banner --> <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/577253745b70b6b1f1f3df891901654f/script.js"></script> <!-- End cookieyes banner -->
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f, b, e, v, n, t, s) {
+    if (f.fbq) return;
+    n = f.fbq = function() {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = !0;
+    n.version = '2.0';
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = !0;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('consent', 'revoke');
+  fbq('init', '{28295943643379586}');
+  fbq('track', 'PageView');
+
+  function handleConsent(hasConsent) {
+    fbq("consent", hasConsent ? "grant" : "revoke");
+  }
+
+  document.addEventListener("cookieyes_consent_update", (eventData) => {
+    const data = eventData.detail;
+    handleConsent(data.accepted && data.accepted.includes("advertisement"));
+  });
+
+  document.addEventListener("cookieyes_banner_load", (eventData) => {
+    const data = eventData.detail;
+    handleConsent(data.categories && data.categories.advertisement);
+  });
+</script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VX51HE6YFL"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+
+ gtag('config', 'G-VX51HE6YFL');
+</script>
+
+
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+   <title>Clicon - Home</title>
+   <link rel="stylesheet" href="style.css">
+
+
+   <link
+       rel="stylesheet"
+       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Krub:wght@500&family=League+Spartan:wght@100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
+  
 </head>
 
+
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THR28RFP"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
 <!-- =====================================================
      BLACK FRIDAY BAR
 ===================================================== -->
